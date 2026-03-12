@@ -27,11 +27,11 @@ App.SteamWorkshopDownloadLocation=
 App.ExecutableWin=2465200\SonsOfTheForestDS.exe
 App.ExecutableLinux=/bin/bash
 App.WorkingDir=2465200
-App.LinuxCommandLineArgs=-c "cd '{{$FullBaseDir}}' && STEAM_COMPAT_DATA_PATH='{{$FullRootDir}}.proton/compatdata' STEAM_COMPAT_CLIENT_INSTALL_PATH='{{$FullBaseDir}}.steam/steam' HOME='{{$FullBaseDir}}' XDG_RUNTIME_DIR=/tmp '{{$FullRootDir}}.proton/proton' run './SonsOfTheForestDS.exe' -dedicatedserver.IpAddress '{{$ApplicationIPBinding}}' -dedicatedserver.GamePort '{{$GamePort}}' -dedicatedserver.QueryPort '{{$SteamQueryPort}}' -dedicatedserver.BlobSyncPort '{{$BlobSyncPort}}' -userdatapath '{{$FullBaseDir}}saves'"
+App.LinuxCommandLineArgs=-c "cd '{{$FullBaseDir}}' && STEAM_COMPAT_DATA_PATH='{{$FullRootDir}}.proton/compatdata' STEAM_COMPAT_CLIENT_INSTALL_PATH='{{$FullBaseDir}}/.steam/steam' HOME='{{$FullBaseDir}}' XDG_RUNTIME_DIR=/tmp '{{$FullRootDir}}.proton/proton' run './SonsOfTheForestDS.exe' -batchmode -nographics -dedicatedserver.IpAddress '{{$ApplicationIPBinding}}' -dedicatedserver.GamePort '{{$GamePort}}' -dedicatedserver.QueryPort '{{$SteamQueryPort}}' -dedicatedserver.BlobSyncPort '{{$BlobSyncPort}}' -userdatapath '{{$FullBaseDir}}/saves'"
 App.WindowsCommandLineArgs=
 App.CommandLineArgs=
 App.UseLinuxIOREDIR=False
-App.EnvironmentVariables={"SteamAppId":"1326470","STEAM_COMPAT_DATA_PATH":"{{$FullRootDir}}.proton/compatdata","STEAM_COMPAT_CLIENT_INSTALL_PATH":"{{$FullBaseDir}}.steam/steam","HOME":"{{$FullBaseDir}}","XDG_RUNTIME_DIR":"/tmp"}
+App.EnvironmentVariables={"SteamAppId":"1326470","STEAM_COMPAT_DATA_PATH":"{{$FullRootDir}}.proton/compatdata","STEAM_COMPAT_CLIENT_INSTALL_PATH":"{{$FullBaseDir}}/.steam/steam","HOME":"{{$FullBaseDir}}","XDG_RUNTIME_DIR":"/tmp"}
 App.CommandLineParameterFormat=-{0} "{1}"
 App.CommandLineParameterDelimiter= 
 App.ExitMethod=OS_CLOSE
