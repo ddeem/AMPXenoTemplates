@@ -27,11 +27,11 @@
         "SkipOnFailure": false
     },
     {
-        "UpdateStageName": "Initialise Wine",
+        "UpdateStageName": "Initialise Proton",
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"rm -rf \\\"{{$FullRootDir}}.wine\\\" >/dev/null 2>&1; WINEPREFIX=\\\"{{$FullRootDir}}.wine\\\" WINEARCH=win64 WINEDEBUG=-all XDG_RUNTIME_DIR=/tmp /usr/bin/wineboot --init\"",
+        "UpdateSourceArgs": "-c \"mkdir -p \\\"{{$FullRootDir}}.proton/compatdata\\\" && mkdir -p \\\"{{$FullBaseDir}}.steam/steam\\\"\"",
         "SkipOnFailure": false
     }
 ]
