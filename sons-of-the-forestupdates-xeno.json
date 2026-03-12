@@ -1,37 +1,37 @@
 [
-    {
-        "UpdateStageName": "SteamCMD Download Game",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "SteamCMD",
-        "UpdateSourceData": "2465200",
-        "UpdateSourceArgs": "",
-        "ForceDownloadPlatform": "Windows",
-        "SkipOnFailure": false
-    },
-    {
-        "UpdateStageName": "Proton GE Download",
-        "UpdateSourcePlatform": "Linux",
-        "UpdateSource": "Executable",
-        "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"cd \\\"{{$FullRootDir}}\\\"; mkdir -p \\\"{{$FullRootDir}}.proton/compatdata\\\" \\\"{{$FullBaseDir}}.steam/steam\\\" \\\"{{$FullBaseDir}}.steam/sdk32\\\" \\\"{{$FullBaseDir}}.steam/sdk64\\\" \\\"{{$FullBaseDir}}.config/protonfixes\\\" && \\cp -f \\\"{{$FullRootDir}}linux32/steamclient.so\\\" \\\"{{$FullBaseDir}}.steam/sdk32/\\\" && \\cp -f \\\"{{$FullRootDir}}linux64/steamclient.so\\\" \\\"{{$FullBaseDir}}.steam/sdk64/\\\"; ProtonVersion=$(wget -qO- https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest | sed -n 's/.*\\\"tag_name\\\": \\\"\\(GE-Proton[0-9]*-[0-9]*\\)\\\".*/\\1/p' | head -1); if [[ ! \\\"$ProtonVersion\\\" =~ ^GE-Proton[0-9]+-[0-9]+$ ]]; then echo \\\"Failed to retrieve a valid Proton GE release version from GitHub\\\" && exit 1; fi; if [[ -x \\\"{{$FullRootDir}}.proton/proton\\\" && -f \\\"{{$FullRootDir}}.proton/version\\\" ]]; then read _ InstalledVersion < \\\"{{$FullRootDir}}.proton/version\\\"; else InstalledVersion=\\\"\\\"; fi; if [[ \\\"$InstalledVersion\\\" == \\\"$ProtonVersion\\\"* ]]; then echo \\\"Proton GE version $ProtonVersion already installed. Skipping\\\" && exit 0; else [[ -f GE-Proton.tar.gz ]] && rm -f GE-Proton.tar.gz >/dev/null 2>&1; wget -qO GE-Proton.tar.gz https://github.com/GloriousEggroll/proton-ge-custom/releases/download/$ProtonVersion/$ProtonVersion.tar.gz || { echo \\\"Proton GE download failed from GitHub. Aborting\\\"; exit 1; }; rm -rf \\\"{{$FullRootDir}}.proton/compatdata/\\\"* >/dev/null 2>&1; tar -xzf GE-Proton.tar.gz -C \\\"{{$FullRootDir}}.proton\\\" --strip-components=1 && rm -f GE-Proton.tar.gz >/dev/null 2>&1 && echo \\\"Proton GE version $ProtonVersion downloaded\\\"; fi\"",
-        "SkipOnFailure": false
-    },
-    {
-        "UpdateStageName": "Create Config Directory",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "CreateDirectory",
-        "UpdateSourceArgs": "{{$FullBaseDir}}saves",
-        "OverwriteExistingFiles": false,
-        "SkipOnFailure": false
-    },
-    {
-        "UpdateStageName": "Base Config Download",
-        "UpdateSourcePlatform": "All",
-        "UpdateSource": "FetchURL",
-        "UpdateSourceData": "https://raw.githubusercontent.com/CubeCoders/AMPTemplates/main/sons-of-the-forestdedicatedserver.cfg",
-        "UpdateSourceTarget": "{{$FullBaseDir}}saves",
-        "UpdateSourceArgs": "dedicatedserver.cfg",
-        "OverwriteExistingFiles": false,
-        "SkipOnFailure": false
-    }
+  {
+    "UpdateStageName": "SteamCMD Download Game",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "SteamCMD",
+    "UpdateSourceData": "2465200",
+    "UpdateSourceArgs": "",
+    "ForceDownloadPlatform": "Windows",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Install Proton GE",
+    "UpdateSourcePlatform": "Linux",
+    "UpdateSource": "Executable",
+    "UpdateSourceData": "/bin/bash",
+    "UpdateSourceArgs": "-c \"set -e; cd \\\"{{$FullRootDir}}\\\"; mkdir -p .proton {{$FullRootDir}}.proton/compatdata {{$FullBaseDir}}.steam/steam {{$FullBaseDir}}.steam/sdk32 {{$FullBaseDir}}.steam/sdk64 {{$FullBaseDir}}.config/protonfixes; echo 'Checking latest Proton GE version'; ProtonVersion=$(wget -qO- https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest | grep tag_name | cut -d '\"' -f4); if [ -z \\\"$ProtonVersion\\\" ]; then echo 'Failed to detect Proton GE version'; exit 1; fi; if [ -f {{$FullRootDir}}.proton/version ] && grep -q \\\"$ProtonVersion\\\" {{$FullRootDir}}.proton/version; then echo 'Latest Proton GE already installed'; exit 0; fi; echo 'Downloading Proton GE:' $ProtonVersion; wget -qO proton.tar.gz https://github.com/GloriousEggroll/proton-ge-custom/releases/download/$ProtonVersion/$ProtonVersion.tar.gz; rm -rf {{$FullRootDir}}.proton/*; tar -xzf proton.tar.gz -C {{$FullRootDir}}.proton --strip-components=1; rm proton.tar.gz; chmod +x {{$FullRootDir}}.proton/proton; echo $ProtonVersion > {{$FullRootDir}}.proton/version; echo 'Proton GE installed'; if [ -f {{$FullRootDir}}linux32/steamclient.so ]; then cp {{$FullRootDir}}linux32/steamclient.so {{$FullBaseDir}}.steam/sdk32/; fi; if [ -f {{$FullRootDir}}linux64/steamclient.so ]; then cp {{$FullRootDir}}linux64/steamclient.so {{$FullBaseDir}}.steam/sdk64/; fi\"",
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Create Config Directory",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "CreateDirectory",
+    "UpdateSourceArgs": "{{$FullBaseDir}}saves",
+    "OverwriteExistingFiles": false,
+    "SkipOnFailure": false
+  },
+  {
+    "UpdateStageName": "Download Default Config",
+    "UpdateSourcePlatform": "All",
+    "UpdateSource": "FetchURL",
+    "UpdateSourceData": "https://raw.githubusercontent.com/CubeCoders/AMPTemplates/main/sons-of-the-forestdedicatedserver.cfg",
+    "UpdateSourceTarget": "{{$FullBaseDir}}saves",
+    "UpdateSourceArgs": "dedicatedserver.cfg",
+    "OverwriteExistingFiles": false,
+    "SkipOnFailure": false
+  }
 ]
