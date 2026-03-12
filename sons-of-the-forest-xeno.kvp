@@ -27,11 +27,11 @@ App.SteamWorkshopDownloadLocation=
 App.ExecutableWin=2465200\SonsOfTheForestDS.exe
 App.ExecutableLinux=/bin/bash
 App.WorkingDir=2465200
-App.LinuxCommandLineArgs=-c "cd '{{$FullBaseDir}}' && STEAM_COMPAT_DATA_PATH='{{$FullRootDir}}.proton/compatdata/1326470' STEAM_COMPAT_CLIENT_INSTALL_PATH='{{$FullBaseDir}}/.steam/steam' HOME='{{$FullBaseDir}}' XDG_RUNTIME_DIR=/tmp '{{$FullRootDir}}.proton/proton' run './SonsOfTheForestDS.exe' -batchmode -nographics -dedicatedserver.IpAddress '{{$ApplicationIPBinding}}' -dedicatedserver.GamePort '{{$GamePort}}' -dedicatedserver.QueryPort '{{$SteamQueryPort}}' -dedicatedserver.BlobSyncPort '{{$BlobSyncPort}}' -userdatapath '{{$FullBaseDir}}/saves'"
+App.LinuxCommandLineArgs=-c "set -euo pipefail; cd '{{$FullBaseDir}}'; LOG='{{$FullBaseDir}}/amp-proton-start.log'; echo '=== AMP: launching SonsOfTheForestDS via Proton ===' | tee -a \"$LOG\"; echo \"PWD=$(pwd)\" | tee -a \"$LOG\"; echo \"PROTON_PATH={{$FullRootDir}}.proton/proton\" | tee -a \"$LOG\"; echo \"STEAM_COMPAT_DATA_PATH={{$FullRootDir}}.proton/compatdata/2465200\" | tee -a \"$LOG\"; echo \"STEAM_COMPAT_CLIENT_INSTALL_PATH={{$FullBaseDir}}/.steam/steam\" | tee -a \"$LOG\"; STEAM_COMPAT_DATA_PATH='{{$FullRootDir}}.proton/compatdata/2465200' STEAM_COMPAT_CLIENT_INSTALL_PATH='{{$FullBaseDir}}/.steam/steam' HOME='{{$FullBaseDir}}' XDG_RUNTIME_DIR=/tmp '{{$FullRootDir}}.proton/proton' run './SonsOfTheForestDS.exe' -batchmode -nographics -dedicatedserver.IpAddress '{{$ApplicationIPBinding}}' -dedicatedserver.GamePort '{{$GamePort}}' -dedicatedserver.QueryPort '{{$SteamQueryPort}}' -dedicatedserver.BlobSyncPort '{{$BlobSyncPort}}' -dedicatedserver.LogFilesEnabled true -dedicatedserver.TimestampLogFilenames true -userdatapath '{{$FullBaseDir}}/saves' 2>&1 | tee -a \"$LOG\""
 App.WindowsCommandLineArgs=
-App.CommandLineArgs=
+App.CommandLineArgs=-c "set -euo pipefail; cd '{{$FullBaseDir}}'; LOG='{{$FullBaseDir}}/amp-proton-start.log'; echo '=== AMP: launching SonsOfTheForestDS via Proton ===' | tee -a \"$LOG\"; echo \"PWD=$(pwd)\" | tee -a \"$LOG\"; echo \"PROTON_PATH={{$FullRootDir}}.proton/proton\" | tee -a \"$LOG\"; echo \"STEAM_COMPAT_DATA_PATH={{$FullRootDir}}.proton/compatdata/2465200\" | tee -a \"$LOG\"; echo \"STEAM_COMPAT_CLIENT_INSTALL_PATH={{$FullBaseDir}}/.steam/steam\" | tee -a \"$LOG\"; STEAM_COMPAT_DATA_PATH='{{$FullRootDir}}.proton/compatdata/2465200' STEAM_COMPAT_CLIENT_INSTALL_PATH='{{$FullBaseDir}}/.steam/steam' HOME='{{$FullBaseDir}}' XDG_RUNTIME_DIR=/tmp '{{$FullRootDir}}.proton/proton' run './SonsOfTheForestDS.exe' -batchmode -nographics -dedicatedserver.IpAddress '{{$ApplicationIPBinding}}' -dedicatedserver.GamePort '{{$GamePort}}' -dedicatedserver.QueryPort '{{$SteamQueryPort}}' -dedicatedserver.BlobSyncPort '{{$BlobSyncPort}}' -dedicatedserver.LogFilesEnabled true -dedicatedserver.TimestampLogFilenames true -userdatapath '{{$FullBaseDir}}/saves' 2>&1 | tee -a \"$LOG\""
 App.UseLinuxIOREDIR=False
-App.EnvironmentVariables={"SteamAppId":"1326470","STEAM_COMPAT_DATA_PATH":"{{$FullRootDir}}.proton/compatdata/1326470","STEAM_COMPAT_CLIENT_INSTALL_PATH":"{{$FullBaseDir}}/.steam/steam","HOME":"{{$FullBaseDir}}","XDG_RUNTIME_DIR":"/tmp"}
+App.EnvironmentVariables={"SteamAppId":"2465200","STEAM_COMPAT_DATA_PATH":"{{$FullRootDir}}.proton/compatdata/2465200","STEAM_COMPAT_CLIENT_INSTALL_PATH":"{{$FullBaseDir}}/.steam/steam","HOME":"{{$FullBaseDir}}","XDG_RUNTIME_DIR":"/tmp"}
 App.CommandLineParameterFormat=-{0} "{1}"
 App.CommandLineParameterDelimiter= 
 App.ExitMethod=OS_CLOSE
@@ -61,7 +61,7 @@ App.RCONHeartbeatMinutes=0
 App.RCONHeartbeatCommand=ping
 App.TelnetLoginFormat={0}
 App.UpdateSources=@IncludeJson[sons-of-the-forestupdates-xeno.json]
-App.PreStartStages=[{"UpdateStageName":"Create steam_appid.txt","UpdateSourcePlatform":"All","UpdateSource":"CreateFile","UpdateSourceData":"{{$FullRootDir}}2465200/steam_appid.txt","UpdateSourceArgs":"1326470","OverwriteExistingFiles":true,"SkipOnFailure":false}]
+App.PreStartStages=[{"UpdateStageName":"Create steam_appid.txt","UpdateSourcePlatform":"All","UpdateSource":"CreateFile","UpdateSourceData":"{{$FullRootDir}}2465200/steam_appid.txt","UpdateSourceArgs":"2465200","OverwriteExistingFiles":true,"SkipOnFailure":false}]
 App.Compatibility=Proton
 App.SteamUpdateAnonymousLogin=True
 App.SteamForceLoginPrompt=False
