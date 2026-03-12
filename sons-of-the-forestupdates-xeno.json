@@ -12,9 +12,9 @@
         "UpdateStageName": "Download Proton-GE",
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "FetchURL",
-        "UpdateSourceData": "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/9.36-GE-1/Proton-9.36-GE-1.tar.gz",
+        "UpdateSourceData": "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton10-31/GE-Proton10-31.tar.gz",
         "UpdateSourceTarget": "{{$FullRootDir}}",
-        "UpdateSourceArgs": "Proton-9.36-GE-1.tar.gz",
+        "UpdateSourceArgs": "GE-Proton10-31.tar.gz",
         "OverwriteExistingFiles": false,
         "SkipOnFailure": false
     },
@@ -23,7 +23,7 @@
         "UpdateSourcePlatform": "Linux",
         "UpdateSource": "Executable",
         "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"cd '{{$FullRootDir}}' && tar -xzf Proton-9.36-GE-1.tar.gz && mv Proton-9.36-GE-1 proton-ge && rm -f Proton-9.36-GE-1.tar.gz\"",
+        "UpdateSourceArgs": "-c \"cd '{{$FullRootDir}}' && tar -xzf GE-Proton10-31.tar.gz && mv GE-Proton10-31 proton-ge && rm -f GE-Proton10-31.tar.gz\"",
         "SkipOnFailure": false
     },
     {
