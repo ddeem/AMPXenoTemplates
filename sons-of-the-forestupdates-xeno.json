@@ -34,13 +34,5 @@
         "UpdateSourceArgs": "dedicatedserver.cfg",
         "OverwriteExistingFiles": false,
         "SkipOnFailure": false
-    },
-    {
-        "UpdateStageName": "Initialise Proton",
-        "UpdateSourcePlatform": "Linux",
-        "UpdateSource": "Executable",
-        "UpdateSourceData": "/bin/bash",
-        "UpdateSourceArgs": "-c \"mkdir -p \\\"{{$FullRootDir}}.proton/compatdata\\\" && mkdir -p \\\"{{$FullBaseDir}}.steam/steam\\\"\"",
-        "SkipOnFailure": false
     }
 ]
