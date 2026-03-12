@@ -20,51 +20,36 @@ Meta.NoCommercialUsage=False
 Meta.ConfigVersion=5
 Meta.AppConfigId=f5b3a2e1-9c4d-4e7f-8b2a-3d6c1e5f9a8b
 Meta.AppIsMultiIPAware=False
-
 App.DisplayName=Sons Of The Forest
 App.RootDir=./sons-of-the-forest/
 App.BaseDirectory=./sons-of-the-forest/2465200/
-
 App.ExecutableWin=2465200\SonsOfTheForestDS.exe
 App.ExecutableLinux=/bin/bash
 App.WorkingDir=2465200
-
 App.LinuxCommandLineArgs=-c 'cd "{{$FullBaseDir}}" && WINEPREFIX="{{$FullRootDir}}.proton/compatdata" "{{$FullRootDir}}.proton/proton" run "./SonsOfTheForestDS.exe" -dedicatedserver.IpAddress "{{$ApplicationIPBinding}}" -dedicatedserver.GamePort "{{$GamePort}}" -dedicatedserver.QueryPort "{{$SteamQueryPort}}" -dedicatedserver.BlobSyncPort "{{$BlobSyncPort}}" -userdatapath "{{$FullBaseDir}}saves"'
-
 App.WindowsCommandLineArgs=-dedicatedserver.IpAddress "{{$ApplicationIPBinding}}" -dedicatedserver.GamePort "{{$GamePort}}" -dedicatedserver.QueryPort "{{$SteamQueryPort}}" -dedicatedserver.BlobSyncPort "{{$BlobSyncPort}}" -userdatapath "{{$FullBaseDir}}saves"
-
 App.CommandLineParameterFormat=-{0} "{1}"
 App.CommandLineParameterDelimiter=
-
 App.EnvironmentVariables={"SteamAppId":"1326470","STEAM_COMPAT_DATA_PATH":"{{$FullRootDir}}.proton/compatdata","STEAM_COMPAT_CLIENT_INSTALL_PATH":"{{$FullBaseDir}}.steam/steam","HOME":"{{$FullBaseDir}}","XDG_RUNTIME_DIR":"/tmp"}
-
 App.ApplicationIPBinding=0.0.0.0
 App.Ports=@IncludeJson[sons-of-the-forestports-xeno.json]
-
 App.AdminPortRef=0
 App.PrimaryApplicationPortRef=GamePort
 App.UniversalSleepApplicationUDPPortRef=GamePort
 App.UniversalSleepSteamQueryPortRef=SteamQueryPort
-
 App.MaxUsers=8
 App.UseRandomAdminPassword=True
 App.AdminMethod=STDIO
-
 App.UpdateSources=@IncludeJson[sons-of-the-forestupdates-xeno.json]
-
 App.PreStartStages=[{"UpdateStageName":"Create steam_appid.txt","UpdateSourcePlatform":"All","UpdateSource":"CreateFile","UpdateSourceData":"{{$FullRootDir}}2465200/steam_appid.txt","UpdateSourceArgs":"1326470","OverwriteExistingFiles":true}]
-
 App.ExitMethod=OS_CLOSE
 App.ExitTimeout=30
 App.ExitString=stop
-
 App.HasWriteableConsole=True
 App.HasReadableConsole=True
-
 Console.AppReadyRegex=^(?:#DSL )?Dedicated server loaded.|(?:#DSE )?[Self-Tests] Please restart the server.$
 Console.UserJoinRegex=^(?:#DSL )?Steam auth successful for client \d+ with steam id (?<userid>.+?)[.,] username (?<username>.+?)$
 Console.UserLeaveRegex=^(?:#DSL )?Unregistering client \d+ with steam id (?<userid>.+?)[.,] username (?<username>.+?)$
-
 Limits.SleepMode=True
 Limits.SleepOnStart=False
 Limits.SleepDelayMinutes=5
