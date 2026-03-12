@@ -9,6 +9,15 @@
         "SkipOnFailure": false
     },
     {
+        "UpdateStageName": "Download Proton",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "SteamCMD",
+        "UpdateSourceData": "1391110",
+        "UpdateSourceArgs": "",
+        "ForceDownloadPlatform": "Linux",
+        "SkipOnFailure": true
+    },
+    {
         "UpdateStageName": "Create Config Directory",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "CreateDirectory",
