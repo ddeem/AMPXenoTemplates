@@ -1,6 +1,6 @@
 [
     {
-        "UpdateStageName": "SteamCMD Download",
+        "UpdateStageName": "SteamCMD Download Game",
         "UpdateSourcePlatform": "All",
         "UpdateSource": "SteamCMD",
         "UpdateSourceData": "2465200",
@@ -9,13 +9,22 @@
         "SkipOnFailure": false
     },
     {
-        "UpdateStageName": "Download Proton",
+        "UpdateStageName": "Download Proton-GE",
         "UpdateSourcePlatform": "Linux",
-        "UpdateSource": "SteamCMD",
-        "UpdateSourceData": "1391110",
-        "UpdateSourceArgs": "",
-        "ForceDownloadPlatform": "Linux",
-        "SkipOnFailure": true
+        "UpdateSource": "FetchURL",
+        "UpdateSourceData": "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/9.36-GE-1/Proton-9.36-GE-1.tar.gz",
+        "UpdateSourceTarget": "{{$FullRootDir}}",
+        "UpdateSourceArgs": "Proton-9.36-GE-1.tar.gz",
+        "OverwriteExistingFiles": false,
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Extract Proton",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"cd '{{$FullRootDir}}' && tar -xzf Proton-9.36-GE-1.tar.gz && mv Proton-9.36-GE-1 proton-ge && rm -f Proton-9.36-GE-1.tar.gz\"",
+        "SkipOnFailure": false
     },
     {
         "UpdateStageName": "Create Config Directory",
